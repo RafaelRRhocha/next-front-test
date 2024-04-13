@@ -7,10 +7,23 @@ import Products from "./components/products";
 import Footer from "./components/footer";
 
 import { productsService } from "./services/products";
+import { storageService } from "./services/storage";
+import useCart from "./utils/state";
 
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const { createCart } = useCart();
+
+  useEffect(() => {
+    const storageCart = storageService.getItem('cart');
+
+    if(storageCart) {
+      createCart(storageCart)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     (async () => {

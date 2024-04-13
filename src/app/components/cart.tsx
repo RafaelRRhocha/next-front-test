@@ -4,18 +4,13 @@ import { motion } from 'framer-motion';
 
 import useCart from "../utils/state";
 import { storageService } from "../services/storage";
-import { useEffect } from "react";
 
 interface ICartOptions {
   toggleSidebar: () => void
 }
 
 export default function Cart({ toggleSidebar }: ICartOptions) {
-  const { cart, addToCart, removeFromCart, updateProductCount, clearCart, createCart } = useCart();
-
-  useEffect(() => {
-    storageService.setItem('cart', cart);
-  }, [cart]);
+  const { cart, addToCart, removeFromCart, updateProductCount, clearCart } = useCart();
 
   const handleMinus = (product: IProduct) => {
     removeFromCart(product);

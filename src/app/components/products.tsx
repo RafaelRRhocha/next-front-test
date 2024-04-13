@@ -9,13 +9,8 @@ export default function Products({ products }: { products: IProduct[] }) {
   const { cart, addToCart, createCart } = useCart();
 
   useEffect(() => {
-    const storageCart = storageService.getItem('cart');
-
-    if(storageCart) {
-      createCart(storageCart)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    storageService.setItem('cart', cart);
+  }, [cart]);
 
   const handleBuyClick = (product: IProduct) => {
     // add to zustand state
@@ -53,7 +48,7 @@ export default function Products({ products }: { products: IProduct[] }) {
 
           <motion.button
             onClick={() => handleBuyClick(product)}
-            className="absolute bottom-0 flex gap-2 items-center justify-center bg-blue-500 hover:bg-blue-600 w-full text-white px-4 py-2 rounded-md"
+            className="absolute bottom-0 flex gap-2 items-center justify-center bg-blue-500 hover:bg-blue-600 w-full text-white px-4 py-2 rounded-b-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
