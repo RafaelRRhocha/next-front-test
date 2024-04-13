@@ -1,6 +1,6 @@
 {
-  "name": "dada",
-  "version": "1.0.0",
+  "name": "mkssistemas",
+  "version": "1.10.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
